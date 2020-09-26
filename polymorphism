@@ -1,0 +1,362 @@
+
+#Polymorphism
+Example 1:
+class Instructor {
+string lastName;// Last name
+
+string firstName;// First name
+
+string officeNumber; // Office number
+
+public:
+
+	Instructor();
+
+	virtual ~Instructor();
+
+	Instructor(const Instructor &other);
+
+	void set(string lname, string fname, string office);
+
+	// print function
+
+	void print() const;
+
+Instructor() {
+
+	// TODO Auto-generated constructor stub
+
+	// The default constructor stores empty strings
+
+	// in the string objects.
+
+	set("", "", "");
+
+ 
+
+}
+
+~Instructor() {
+
+	// TODO Auto-generated destructor stub
+
+}
+
+ 
+
+Instructor(const Instructor &other) {
+
+	// TODO Auto-generated constructor stub
+
+ 
+
+}
+
+// set function
+
+void set(string lname, string fname, string office)
+
+{
+
+lastName = lname;
+
+firstName = fname;
+
+officeNumber = office; }
+
+// print function
+
+void  print() const
+
+{
+
+	cout << "Last name: " << lastName << endl;
+
+    cout << "First name: " << firstName << endl;
+
+     cout << "Office number: " << officeNumber << endl; }
+
+};
+
+class Course {
+
+private:
+
+string courseName;// Course name
+
+Instructor instructor; // Instructor
+
+TextBook textbook;// Textbook
+
+public:
+
+	// Constructor
+
+			Course(string course, string instrLastName,
+
+			string instrFirstName, string instrOffice,
+
+			string textTitle, string author,
+
+			string publisher);
+
+			// print function
+
+			void print() const;
+
+	virtual ~Course();
+
+	Course(const Course &other);
+
+Course(string course, string instrLastName,
+
+		string instrFirstName, string instrOffice,
+
+		string textTitle, string author,
+
+		string publisher)
+
+	{ // Assign the course name.
+
+	courseName = course;
+
+	// Assign the instructor.
+
+	instructor.set(instrLastName, instrFirstName, instrOffice);
+
+	// Assign the textbook.
+
+	textbook.set(textTitle, author, publisher); }
+
+	// TODO Auto-generated constructor stub
+
+ 
+
+// print function
+
+void print() const
+
+{ cout << "Course name: " << courseName << endl << endl;
+
+cout << "Instructor Information:\n";instructor.print();
+
+cout << "\nTextbook Information:\n";textbook.print();
+
+cout << endl;}
+
+ 
+
+~Course() {
+
+	// TODO Auto-generated destructor stub
+
+}
+
+ 
+
+Course(const Course &other) {
+
+	// TODO Auto-generated constructor stub
+
+ 
+
+}
+
+};
+
+class TextBook {
+
+private:
+
+string title;
+
+// Book title
+
+string author;
+
+// Author name
+
+string publisher; // Publisher name
+
+public:
+
+	TextBook();
+
+	// Constructor
+
+	TextBook(string textTitle, string auth, string pub);
+
+	// set function
+
+	void set(string textTitle, string auth, string pub);
+
+	// print function
+
+	void print() const;
+
+	virtual ~TextBook();
+
+	TextBook(const TextBook &other);
+
+TextBook() {
+
+	// TODO Auto-generated constructor stub
+
+	set("", "", "");
+
+ 
+
+}
+
+TextBook(string textTitle, string auth, string pub){
+
+	set(textTitle, auth, pub);
+
+ 
+
+}
+
+// set function
+
+void  set(string textTitle, string auth, string pub)
+
+{ title = textTitle;
+
+author = auth;
+
+publisher = pub; }
+
+// print function
+
+void print() const
+
+{ cout << "Title: " << title << endl;
+
+cout << "Author: " << author << endl;
+
+cout << "Publisher: " << publisher << endl; }
+
+~TextBook() {
+
+	// TODO Auto-generated destructor stub
+
+}
+
+ 
+
+TextBook(const TextBook &other) {
+
+	// TODO Auto-generated constructor stub
+
+ 
+
+}
+
+};
+
+ 
+
+ 
+
+// This program demonstrates the Course class.
+
+#include "Course.h"
+
+int main(int argc, char **argv) {
+
+	// Create a Course object.
+
+	Course myCourse("Intro to Computer Science", // Course name
+
+	"Kramer", "Shawn", "RH3010",
+
+	// Instructor info
+
+	"Starting Out with C++", "Gaddis", // Textbook title and author
+
+	"Addison-Wesley");
+
+	// Textbook publisher
+
+	// Display the course info.
+
+	myCourse.print();
+
+	return 0;
+
+}
+Example 2: 
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+ 
+
+// Base class
+
+class Animal {
+
+  public:
+
+    void animalSound() {
+
+      cout << "The animal makes a sound \n" ;
+
+    }
+
+};
+
+ 
+
+// Derived class
+
+class Pig : public Animal {
+
+  public:
+
+    void animalSound() {
+
+      cout << "The pig says: wee wee \n" ;
+
+    }
+
+};
+
+ 
+
+// Derived class
+
+class Dog : public Animal {
+
+  public:
+
+    void animalSound() {
+
+      cout << "The dog says: bow wow \n" ;
+
+    }
+
+};
+
+ 
+
+int main() {
+
+  Animal myAnimal;
+
+  Pig myPig;
+
+  Dog myDog;
+
+ 
+
+  myAnimal.animalSound();
+
+  myPig.animalSound();
+
+  myDog.animalSound();
+
+  return 0;
+}
